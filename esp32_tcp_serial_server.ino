@@ -12,19 +12,19 @@ const char* password = "$password";
 WiFiServer server(23);                     // init server object on port 23
 
 void setup() {
-  Serial.begin(115200);
-  Serial2.begin(9600);
+  Serial.begin(115200);                    // start serial0
+  Serial2.begin(9600);                     // start hardware serial2 (UART2)
   delay(2000);
   Serial.print("Connecting to ");
   Serial.println(ssid);
-  WiFi.begin(ssid, password);
+  WiFi.begin(ssid, password);              // connect to wifi
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
   }
 
   Serial.println("WiFi connected.");
-  Serial.println("IP address: ");
+  Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
   server.begin();                         // start server
