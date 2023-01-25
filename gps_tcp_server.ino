@@ -9,10 +9,7 @@
 
 const char* ssid = "$SSID";
 const char* password = "$password";
-
-
-
-WiFiServer server(23);
+WiFiServer server(23);                     // init server object on port 23
 
 void setup() {
   Serial.begin(115200);
@@ -30,11 +27,12 @@ void setup() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 
-  server.begin();
+  server.begin();                         // start server
+  server.setNoDelay(true);                // don't wait to combine small outgoing packets 
 }
 
 void loop() {
-  WiFiClient client = server.available();  // listen for incoming clients
+  WiFiClient client = server.available(); // listen for incoming clients
   Serial.println("Listening for tcp connection on port 23... ");
   delay(2000);
 
