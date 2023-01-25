@@ -9,11 +9,14 @@
 
 const char* ssid = "$SSID";
 const char* password = "$password";
-WiFiServer server(23);                     // init server object on port 23
+const int   gpsModuleBaudRate = 9600;
+const int   serverPort = 23;
+
+WiFiServer server(serverPort);             // init server object on port 23
 
 void setup() {
   Serial.begin(115200);                    // start serial0
-  Serial2.begin(9600);                     // start hardware serial2 (UART2)
+  Serial2.begin(gpsModuleBaudRate);        // start hardware serial2 (UART2)
   delay(2000);
   Serial.print("Connecting to ");
   Serial.println(ssid);
